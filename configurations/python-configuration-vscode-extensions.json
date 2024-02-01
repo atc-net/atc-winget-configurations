@@ -1,0 +1,8 @@
+{
+  "extensions":
+  [
+    { "name": "ms-python.isort", "description": "Integrates the isort tool into VS Code for organizing Python imports according to the PEP 8 guidelines, making code structure cleaner and more readable." },
+    { "name": "ms-python.python", "description": "Provides comprehensive Python language support in Visual Studio Code, including features such as IntelliSense, linting, debugging, code navigation, code formatting, Jupyter notebook support, refactoring, and much more." },
+    { "name": "ms-python.vscode-pylance", "description": "Offers fast and rich language support for Python in VS Code, powered by Pyright. It includes features like auto-imports, type information, auto-completion, and more, enhancing Python development productivity and experience." }
+  ]
+}

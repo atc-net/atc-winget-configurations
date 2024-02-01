@@ -1,0 +1,61 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+
+##########################################################################################################
+# This configuration will configure various windows settings on Windows 11                               #
+# NOTE: Run: winget configure .\os-configuration.dsc.yaml --accept-configuration-agreements              #
+##########################################################################################################
+properties:
+  configurationVersion: 0.2.0
+  assertions:
+    - resource: Microsoft.Windows.Developer/OsVersion
+      id: osVersionAssertion
+      directives:
+        description: Verify min OS version requirement
+        allowPrerelease: true
+      settings:
+        MinVersion: '10.0.22631'
+  resources:
+    - resource: Microsoft.Windows.Developer/DeveloperMode
+      directives:
+        description: Enable Developer Mode
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+      dependsOn:
+        - osVersionAssertion
+    - resource: Microsoft.Windows.Developer/ShowHiddenFiles
+      directives:
+        description: Show hidden files
+        allowPrerelease: true
+      settings:
+        Ensure: Present # Ensuring Hidden files are shown
+      dependsOn:
+        - osVersionAssertion
+    - resource: Microsoft.Windows.Developer/HideFileExtensions
+      directives:
+        description: Show file extensions
+        allowPrerelease: true
+      settings:
+        Ensure: Absent # Ensuring FileExtensions are shown (disables that they should be hidden)
+      dependsOn:
+        - osVersionAssertion
+    - resource: Microsoft.Windows.Developer/EnableDarkMode
+      directives:
+        description: Enable dark mode
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        # Use caution when setting `RestartExplorer: true` as this will force explorer to close.
+        RestartExplorer: true # Required to apply changes
+      dependsOn:
+        - osVersionAssertion
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: Flux
+      directives:
+        description: Install f.lux
+        allowPrerelease: true
+      settings:
+        id: flux.flux
+        source: winget
+      dependsOn:
+        - osVersionAssertion

@@ -1,0 +1,6 @@
+{
+  "extensions":
+  [
+    { "name": "Antyos.openscad", "description": "OpenSCAD highlighting, snippets, and more for VSCode" }
+  ]
+}
