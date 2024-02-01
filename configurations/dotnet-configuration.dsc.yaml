@@ -92,44 +92,40 @@ properties:
         TestScript: |
           # Load required tools from JSON file
           $jsonContent = Get-Content '${WinGetConfigRoot}\dotnet-tools-configuration.json' -Raw
-          $tools = (ConvertFrom-Json $jsonContent).tools
+          $requiredTools = (ConvertFrom-Json $jsonContent).tools.id
 
           # Get the list of currently installed global tools
-          $installedTools = dotnet tool list -g | Select-Object -Skip 2 | ForEach-Object {
-            if ($_ -match '^\s*(?<id>[^\s]+)\s') {
-              $matches['id']
+          $installedTools = dotnet tool list -g | Select-Object -Skip 2 | ForEach-Object { ($_ -split '\s+')[0] }
+
+          # Check if all required tools are installed
+          $allInstalled = $true
+          foreach ($toolId in $requiredTools) {
+            if (-not ($installedTools -contains $toolId)) {
+              $allInstalled = $false
+              break
             }
           }
 
-          # Check if all required tools are installed
-          $requiredTools = $tools | ForEach-Object { $_.id }
-          $missingTools = $requiredTools | Where-Object { $_ -notin $installedTools }
-
-          return $missingTools.Count -eq 0
+          return $allInstalled
         SetScript: |
           # Load required tools from JSON file
           $jsonContent = Get-Content '${WinGetConfigRoot}\dotnet-tools-configuration.json' -Raw
           $tools = (ConvertFrom-Json $jsonContent).tools
 
-          # Get the list of currently installed global tools
-          $installedTools = dotnet tool list -g | Select-Object -Skip 2 | ForEach-Object {
-            if ($_ -match '^\s*(?<id>[^\s]+)\s') {
-              $matches['id']
-            }
-          }
+          # Get the list of currently installed global tools by parsing the first column
+          $installedTools = dotnet tool list -g | Select-Object -Skip 2 | ForEach-Object { ($_ -split '\s+')[0] }
 
           foreach ($tool in $tools) {
             $toolId = $tool.id
             $toolVersion = $tool.version
 
-            # Check if the tool is already installed
-            if ($toolId -in $installedTools) {
-              continue
-            } else {
+            # Install the tool if it is not already installed
+            if (-not ($installedTools -contains $toolId)) {
               $installCommand = "dotnet tool install -g $toolId"
               if ($toolVersion -ne "latest") {
                 $installCommand += " --version $toolVersion"
               }
+
               Invoke-Expression $installCommand
             }
           }
