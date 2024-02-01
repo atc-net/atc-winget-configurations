@@ -44,7 +44,7 @@ properties:
     - resource: PSDscResources/Script
       id: VisualStudioCode Extensions
       directives:
-        description: Script to install Powershell extensions
+        description: Script to install Visual Studio Code extensions
         allowPrerelease: true
       settings:
         GetScript: |
