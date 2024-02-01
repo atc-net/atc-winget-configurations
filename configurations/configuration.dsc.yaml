@@ -158,9 +158,14 @@ properties:
           $jsonContent = Get-Content '${WinGetConfigRoot}\configuration-vscode-extensions.json' -Raw
           $extensions = (ConvertFrom-Json $jsonContent).extensions
 
-          # Install each extension
+          # Get the list of currently installed extensions
+          $installedExtensions = code --list-extensions
+
+          # Install each extension if not already installed
           foreach ($extension in $extensions) {
-            code --install-extension $extension.name
+            if ($installedExtensions -notcontains $extension.name) {
+              code --install-extension $extension.name
+            }
           }
       dependsOn:
         - VisualStudioCode
