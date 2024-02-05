@@ -1,0 +1,14 @@
+{
+  "extensions":
+  [
+    { "name": "formulahendry.dotnet", "description": "Provides .NET Core support for VS Code, including project creation, running, and debugging functionalities." },
+    { "name": "formulahendry.dotnet-test-explorer", "description": "Adds test explorer support for .NET Core, making it easier to run and debug tests directly from VS Code." },
+    { "name": "ms-dotnettools.blazorwasm-companion", "description": "Facilitates the development of Blazor WebAssembly applications by enabling debugging capabilities directly in the browser from VS Code." },
+    { "name": "ms-dotnettools.csdevkit", "description": "Enhances C# development in VS Code with additional tools and utilities, aimed at improving productivity and efficiency." },
+    { "name": "ms-dotnettools.csharp", "description": "Provides rich C# language support, including features such as IntelliSense, debugging, and code navigation in VS Code." },
+    { "name": "ms-dotnettools.dotnet-interactive-vscode", "description": "Enables .NET Interactive Notebooks in VS Code, allowing the execution of .NET code in an interactive notebook environment." },
+    { "name": "ms-dotnettools.dotnet-maui", "description": "Supports the development of .NET MAUI (Multi-platform App UI) projects, offering tools for building cross-platform applications." },
+    { "name": "ms-dotnettools.vscode-dotnet-runtime", "description": "Automates the acquisition and management of the .NET runtime, simplifying the setup process for projects that require the .NET runtime." },
+    { "name": "ms-dotnettools.vscodeintellicode-csharp", "description": "Integrates AI-assisted IntelliCode for C# in VS Code, providing more context-aware code completions based on patterns found in your code and others." }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "extensions":
+  [
+    { "name": "redhat.java", "description": "Provides Java language support via Eclipse JDT Language Server, which utilizes Eclipse JDT, M2Eclipse and Buildship to allow for a rich Java development experience." },
+    { "name": "vscjava.vscode-java-debug", "description": "Offers powerful debugging support for Java applications, including launch/attach configurations, breakpoints, step through, variables inspection, and expression evaluation." },
+    { "name": "vscjava.vscode-java-dependency", "description": "Views and manages project dependencies directly in Visual Studio Code, enhancing Java project management and navigation capabilities." },
+    { "name": "vscjava.vscode-java-pack", "description": "A collection of essential Java extensions to support Java development, including editing, debugging, testing, and project management." },
+    { "name": "vscjava.vscode-java-test", "description": "Provides support for running and debugging JUnit and TestNG test cases, making it easier to perform test-driven development in Java." },
+    { "name": "vscjava.vscode-maven", "description": "Integrates Maven into Visual Studio Code, offering features like project creation, dependency management, and custom Maven goals execution." }
+  ]
+}

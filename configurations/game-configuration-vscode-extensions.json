@@ -1,0 +1,6 @@
+{
+  "extensions":
+  [
+    { "name": "VisualStudioToolsForUnity.vstuc", "description": "Integrates Visual Studio Code with Unity" }
+  ]
+}

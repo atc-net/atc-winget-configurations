@@ -1,0 +1,9 @@
+{
+  "extensions":
+  [
+    { "name": "Arjun.swagger-viewer", "description": "Provides a convenient way to view and validate Swagger (OpenAPI) documents directly within Visual Studio Code, offering real-time visualization and error reporting." },
+    { "name": "humao.rest-client", "description": "Allows you to send HTTP requests and view the response directly within VS Code, making it easier to test APIs without leaving the editor." },
+    { "name": "mermade.openapi-lint", "description": "A linter for OpenAPI specifications that helps ensure your API documents adhere to the OpenAPI standards and best practices, improving API design and documentation." },
+    { "name": "ms-graph.kiota", "description": "An experimental extension that provides support for the Kiota SDK, enabling developers to generate API client libraries for Microsoft Graph and other OpenAPI-described APIs directly within VS Code." }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "extensions":
+  [
+    { "name": "ipedrazas.kubernetes-snippets", "description": "Provides a collection of code snippets for Kubernetes resources, making it easier to write Kubernetes configuration files" },
+    { "name": "mindaro.mindaro", "description": "Enables developers to run and debug their applications directly in Kubernetes clusters from VS Code, simplifying microservices development and testing" },
+    { "name": "ms-azuretools.vscode-docker", "description": "Makes it easy to build, manage, and deploy containerized applications from Visual Studio Code using Docker" },
+    { "name": "ms-kubernetes-tools.vscode-aks-tools", "description": "Provides integration with Azure Kubernetes Service (AKS), allowing users to browse AKS clusters and manage AKS resources within VS Code" },
+    { "name": "ms-kubernetes-tools.vscode-kubernetes-tools", "description": "Offers comprehensive Kubernetes integration, including cluster management, resource navigation, logs streaming, and terminal access to Kubernetes environments" },
+    { "name": "ms-vscode-remote.remote-containers", "description": "Allows you to open any folder inside (or mounted into) a container and take advantage of VS Code's full feature set as if you were working locally" }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "extensions":
+  [
+    { "name": "ms-semantic-kernel.semantic-kernel", "description": "Prompt engineering tools to create AI plugins with Semantic Kernel" }
+  ]
+}
