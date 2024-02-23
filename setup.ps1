@@ -46,7 +46,7 @@ function Show-MainMenu {
     }
 
     Write-Host "0. Exit"
-    $choice = Read-Host "Enter the number of the profile you want to test/apply (or '0' to exit):"
+    $choice = Read-Host "Enter the number of the profile you want to test/apply (or '0' to exit)"
     return [int]$choice
 }
 
