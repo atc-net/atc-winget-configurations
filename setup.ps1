@@ -1,6 +1,6 @@
 # List of available profile files in the /configurations sub-folder
 $configurationsFolderPath = ".\configurations"
-$profileFiles = Get-ChildItem -Path $configurationsFolderPath -Filter "*.dsc.yaml" | Select-Object -ExpandProperty Name
+$profileFiles = @(Get-ChildItem -Path $configurationsFolderPath -Filter "*.dsc.yaml" | Select-Object -ExpandProperty Name)
 
 function IsPowershellRunningWithAdminRights
 {
