@@ -2,7 +2,7 @@
 
 ##########################################################################################################
 # This configuration will install the tools necessary to get started developing in dotnet                #
-# NOTE: Run: winget configure .\azure-configuration.dsc.yaml --accept-configuration-agreements           #
+# NOTE: Run: winget configure .\dotnet-configuration.dsc.yaml --accept-configuration-agreements          #
 ##########################################################################################################
 properties:
   configurationVersion: 0.2.0
