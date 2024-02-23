@@ -46,6 +46,7 @@ $visualStudioExtensions = @(
   @{ DisplayName = 'Open Command Line'; ItemName = 'MadsKristensen.OpenCommandLine64'; },
   @{ DisplayName = 'Open in Visual Studio Code'; ItemName = 'MadsKristensen.OpeninVisualStudioCode'; },
   @{ DisplayName = 'NPM Task Runner'; ItemName = 'MadsKristensen.NpmTaskRunner64'; },
+  @{ DisplayName = 'NuGetSolver'; ItemName = 'vsext.NuGetSolver'; },
   @{ DisplayName = 'Package Installer'; ItemName = 'MadsKristensen.PackageInstaller64'; },
   @{ DisplayName = 'Peek Help 2022'; ItemName = 'VisualStudioPlatformTeam.PeekHelp2022'; },
   @{ DisplayName = 'PowerShell Tools for Visual Studio 2022'; ItemName = 'AdamRDriscoll.PowerShellToolsVS2022'; },
