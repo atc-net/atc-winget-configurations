@@ -16,6 +16,7 @@ properties:
         MinVersion: '10.0.22631'
   resources:
     - resource: Microsoft.Windows.Developer/DeveloperMode
+      id: developerMode
       directives:
         description: Enable Developer Mode
         allowPrerelease: true
@@ -24,6 +25,7 @@ properties:
       dependsOn:
         - osVersionAssertion
     - resource: Microsoft.Windows.Developer/ShowHiddenFiles
+      id: showHiddenFiles
       directives:
         description: Show hidden files
         allowPrerelease: true
@@ -32,6 +34,7 @@ properties:
       dependsOn:
         - osVersionAssertion
     - resource: Microsoft.Windows.Developer/HideFileExtensions
+      id: hideFileExtensions
       directives:
         description: Show file extensions
         allowPrerelease: true
@@ -40,6 +43,7 @@ properties:
       dependsOn:
         - osVersionAssertion
     - resource: Microsoft.Windows.Developer/EnableDarkMode
+      id: enableDarkMode
       directives:
         description: Enable dark mode
         allowPrerelease: true

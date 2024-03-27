@@ -2,6 +2,10 @@
 $configurationsFolderPath = ".\configurations"
 $profileFiles = @(Get-ChildItem -Path $configurationsFolderPath -Filter "*.dsc.yaml" | Select-Object -ExpandProperty Name)
 
+$resourceTypeGroupIdentifier = 2
+$resourceNameGroupIdentifier = 3
+$resourceOutcomeGroupIdentifier = 4
+
 function IsPowershellRunningWithAdminRights
 {
     $currentUser = New-Object System.Security.Principal.WindowsPrincipal([System.Security.Principal.WindowsIdentity]::GetCurrent())
@@ -12,6 +16,25 @@ function IsPowershellRunningWithAdminRights
     }
 
     return $true;
+}
+
+function IsWingetVersionCorrect {
+    param (
+        [string]$requiredVersion = "1.7.10661"
+    )
+
+    $wingetVersionOutput = winget -v
+    $currentVersion = $wingetVersionOutput.TrimStart('v')
+
+    $currentVersionObject = [version]$currentVersion
+    $requiredVersionObject = [version]$requiredVersion
+
+    if ($currentVersionObject -lt $requiredVersionObject) {
+        Write-Warning "WinGet is not at the required version or higher. Required: $requiredVersion, Current: $currentVersion"
+        return $false
+    }
+
+    return $true
 }
 
 function Invoke-ProfileProcess {
@@ -63,7 +86,7 @@ function Show-SubMenu {
     Write-Host "2. Test Profile"
     Write-Host "3. Return to Main Menu"
     Write-Host "0. Exit"
-    $subChoice = Read-Host "Enter your choice (or '0' to exit):"
+    $subChoice = Read-Host "Enter your choice (or '0' to exit)"
     return [int]$subChoice
 }
 
@@ -77,8 +100,8 @@ function CalculateMaxLengths {
     $maxNameLength = 0
 
     foreach ($lineMatch in $lineMatches) {
-        $typeLength = $lineMatch.Groups[1].Value.Length
-        $nameLength = $lineMatch.Groups[2].Value.Length
+        $typeLength = $lineMatch.Groups[$resourceTypeGroupIdentifier].Value.Length
+        $nameLength = $lineMatch.Groups[$resourceNameGroupIdentifier].Value.Length
 
         if ($typeLength -gt $maxTypeLength) { $maxTypeLength = $typeLength }
         if ($nameLength -gt $maxNameLength) { $maxNameLength = $nameLength }
@@ -120,18 +143,13 @@ function Write-ConfigurationOutput {
         $mode
     )
 
-    # Convert console output to string if it's not already
     $consoleOutputString = if ($consoleOutput -is [String]) { $consoleOutput } else { $consoleOutput | Out-String }
 
-    # Determine the pattern based on the mode
-    $pattern = switch ($mode) {
-        "Test"  { 'Apply :: (\w+) \[(.*?)\](?:.*\r?\n)+?.*?System is (not )?in the described configuration state\.' }
-        "Apply" { 'Apply :: (\w+) \[(.*?)\](?:.*\r?\n)+?.*?(Configuration successfully applied\.|The configuration unit failed while attempting to apply the desired state\.)' }
-    }
+    $pattern = '(Assert|Apply) :: (\w+)(?: \[(.*?)\])?(?:.*\r?\n)+?.*?(System is not in the described configuration state\.|System is in the described configuration state\.|This configuration unit was not run because an assert failed or was false\.|Configuration successfully applied\.|The configuration unit failed while attempting to apply the desired state\.|The configuration unit was not in the module as expected\.)'
 
-    # Find matches
     $lineMatches = [regex]::Matches($consoleOutputString, $pattern)
 
+    # Calculate max lengths for formatting output
     $maxLengths = CalculateMaxLengths $lineMatches
     $maxTypeLength = $maxLengths.MaxTypeLength
     $maxNameLength = $maxLengths.MaxNameLength
@@ -139,43 +157,59 @@ function Write-ConfigurationOutput {
     $isOverallSuccess = $true
 
     foreach ($match in $lineMatches) {
-        $type = $match.Groups[1].Value
-        $name = $match.Groups[2].Value
-        $status = switch ($mode) {
-            "Test"  { if ($match.Groups[3].Success) { "System is not in the described configuration state." } else { "System is in the described configuration state." } }
-            "Apply" { $match.Groups[3].Value }
+        $type = $match.Groups[$resourceTypeGroupIdentifier].Value
+        $name = $match.Groups[$resourceNameGroupIdentifier].Value
+        $outcome = $match.Groups[$resourceOutcomeGroupIdentifier].Value
+
+        # Determine status based on the outcome
+        $status = switch -Regex ($outcome) {
+            "System is not in the described configuration state\." { "Not in the described state" }
+            "System is in the described configuration state\." { "In the described state" }
+            "This configuration unit was not run because an assert failed or was false\." { "Skipped due to failed assert" }
+            "Configuration successfully applied\." { "Successfully applied" }
+            "The configuration unit failed while attempting to apply the desired state\." { "Failed to apply" }
+            "The configuration unit was not in the module as expected\." { "Unknown configuration type" }
+            default { "Unknown" }
         }
 
-        $statusColor = if ($mode -eq "Test" -and $match.Groups[3].Success -or $mode -eq "Apply" -and $status -ne "Configuration successfully applied.") { "Red" } else { "Green" }
+        $statusColor = switch ($status) {
+            "Not in the described state" { "Red" }
+            "Skipped due to failed assert" { "DarkYellow" }
+            "Failed to apply" { "Red" }
+            "Unknown configuration type" { "Red" }
+            default { "Green" }
+        }
 
         Write-OutputLine `
-            $type `
-            $name `
-            $status `
-            $maxTypeLength `
-            $maxNameLength `
-            $statusColor
+            -type $type `
+            -name $name `
+            -status $status `
+            -maxTypeLength $maxTypeLength `
+            -maxNameLength $maxNameLength `
+            -statusColor $statusColor
 
-        if ($mode -eq "Test" -and $match.Groups[3].Success -or $mode -eq "Apply" -and $status -ne "Configuration successfully applied.") {
+        if ($status -eq "Not in the described state" -or $status -eq "Failed to apply") {
             $isOverallSuccess = $false
         }
     }
 
     Write-Host "----------------------------------------------------------------------"
     if ($isOverallSuccess) {
-        $overallMessage = if ($mode -eq "Test") { "System is in the described configuration state." } else { "All configurations were successfully applied." }
-        Write-Host "Overall: " -NoNewline -ForegroundColor Yellow
-        Write-Host $overallMessage -ForegroundColor Green
+        Write-Host "Overall: System is in the described configuration state." -ForegroundColor Green
     } else {
-        $overallMessage = if ($mode -eq "Test") { "System is not in the described configuration state." } else { "Some components failed to apply the desired state." }
-        Write-Host "Overall: " -NoNewline -ForegroundColor Yellow
-        Write-Host $overallMessage -ForegroundColor Red
+        Write-Host "Overall: System is not in the described configuration state." -ForegroundColor Red
     }
     Write-Host "----------------------------------------------------------------------"
 }
 
 $isPowershellRunningWithAdminRights = IsPowershellRunningWithAdminRights
 if(!$isPowershellRunningWithAdminRights)
+{
+    break
+}
+
+$isWingetVersionCorrect = IsWingetVersionCorrect
+if(!$isWingetVersionCorrect)
 {
     break
 }
@@ -197,7 +231,7 @@ while ($true) {
                 1 { Invoke-ProfileProcess -profilePath $profilePath -mode "Apply" }
                 2 { Invoke-ProfileProcess -profilePath $profilePath -mode "Test" }
                 3 { $subChoiceLoop = $false } # Set flag to break out of the submenu loop
-                0 { exit }  # Exit the script
+                0 { exit }
                 default { Write-Host "Invalid choice. Please select a valid option." }
             }
         }
