@@ -18,6 +18,25 @@ function IsPowershellRunningWithAdminRights
     return $true;
 }
 
+function IsWingetVersionCorrect {
+    param (
+        [string]$requiredVersion = "1.7.10661"
+    )
+
+    $wingetVersionOutput = winget -v
+    $currentVersion = $wingetVersionOutput.TrimStart('v')
+
+    $currentVersionObject = [version]$currentVersion
+    $requiredVersionObject = [version]$requiredVersion
+
+    if ($currentVersionObject -lt $requiredVersionObject) {
+        Write-Warning "WinGet is not at the required version or higher. Required: $requiredVersion, Current: $currentVersion"
+        return $false
+    }
+
+    return $true
+}
+
 function Invoke-ProfileProcess {
     param (
         [string]
@@ -185,6 +204,12 @@ function Write-ConfigurationOutput {
 
 $isPowershellRunningWithAdminRights = IsPowershellRunningWithAdminRights
 if(!$isPowershellRunningWithAdminRights)
+{
+    break
+}
+
+$isWingetVersionCorrect = IsWingetVersionCorrect
+if(!$isWingetVersionCorrect)
 {
     break
 }
