@@ -63,7 +63,7 @@ function Show-SubMenu {
     Write-Host "2. Test Profile"
     Write-Host "3. Return to Main Menu"
     Write-Host "0. Exit"
-    $subChoice = Read-Host "Enter your choice (or '0' to exit):"
+    $subChoice = Read-Host "Enter your choice (or '0' to exit)"
     return [int]$subChoice
 }
 
