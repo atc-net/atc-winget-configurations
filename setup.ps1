@@ -174,6 +174,7 @@ function Write-ConfigurationOutput {
     Write-Host "----------------------------------------------------------------------"
 }
 
+
 $isPowershellRunningWithAdminRights = IsPowershellRunningWithAdminRights
 if(!$isPowershellRunningWithAdminRights)
 {
@@ -197,7 +198,7 @@ while ($true) {
                 1 { Invoke-ProfileProcess -profilePath $profilePath -mode "Apply" }
                 2 { Invoke-ProfileProcess -profilePath $profilePath -mode "Test" }
                 3 { $subChoiceLoop = $false } # Set flag to break out of the submenu loop
-                0 { exit }  # Exit the script
+                0 { exit }
                 default { Write-Host "Invalid choice. Please select a valid option." }
             }
         }
