@@ -126,7 +126,7 @@ function Write-ConfigurationOutput {
 
     $consoleOutputString = if ($consoleOutput -is [String]) { $consoleOutput } else { $consoleOutput | Out-String }
 
-    $pattern = '(Assert|Apply) :: (\w+)(?: \[(.*?)\])?(?:.*\r?\n)+?.*?(System is not in the described configuration state\.|System is in the described configuration state\.|This configuration unit was not run because an assert failed or was false\.|Configuration successfully applied\.|The configuration unit failed while attempting to apply the desired state\.)'
+    $pattern = '(Assert|Apply) :: (\w+)(?: \[(.*?)\])?(?:.*\r?\n)+?.*?(System is not in the described configuration state\.|System is in the described configuration state\.|This configuration unit was not run because an assert failed or was false\.|Configuration successfully applied\.|The configuration unit failed while attempting to apply the desired state\.|The configuration unit was not in the module as expected\.)'
 
     $lineMatches = [regex]::Matches($consoleOutputString, $pattern)
 
@@ -149,6 +149,7 @@ function Write-ConfigurationOutput {
             "This configuration unit was not run because an assert failed or was false\." { "Skipped due to failed assert" }
             "Configuration successfully applied\." { "Successfully applied" }
             "The configuration unit failed while attempting to apply the desired state\." { "Failed to apply" }
+            "The configuration unit was not in the module as expected\." { "Unknown configuration type" }
             default { "Unknown" }
         }
 
@@ -156,6 +157,7 @@ function Write-ConfigurationOutput {
             "Not in the described state" { "Red" }
             "Skipped due to failed assert" { "DarkYellow" }
             "Failed to apply" { "Red" }
+            "Unknown configuration type" { "Red" }
             default { "Green" }
         }
 
