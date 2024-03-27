@@ -1,6 +1,7 @@
 {
   "version": "1.0",
   "components": [
+    "Component.Xamarin",
     "Microsoft.VisualStudio.Component.Roslyn.Compiler",
     "Microsoft.Component.MSBuild",
     "Microsoft.VisualStudio.Component.Roslyn.LanguageServices",
@@ -82,6 +83,7 @@
     "Microsoft.VisualStudio.Component.VC.Tools.x86.x64",
     "Microsoft.VisualStudio.Component.Graphics.Tools",
     "Microsoft.VisualStudio.Component.VC.DiagnosticTools",
+    "Microsoft.VisualStudio.Component.Windows11SDK.22621",
     "Microsoft.VisualStudio.Workload.Python",
     "maui.core",
     "maui.blazor",
@@ -121,10 +123,25 @@
     "Microsoft.ComponentGroup.Blend",
     "Microsoft.VisualStudio.Workload.ManagedDesktop",
     "Microsoft.VisualStudio.Component.VC.Redist.14.Latest",
+    "Microsoft.VisualStudio.Component.Windows10SDK.19041",
+    "Microsoft.VisualStudio.Component.VC.Tools.ARM64EC",
+    "Microsoft.VisualStudio.Component.UWP.VC.ARM64EC",
+    "Microsoft.VisualStudio.Component.VC.Tools.ARM64",
+    "Microsoft.VisualStudio.Component.UWP.VC.ARM64",
+    "Microsoft.VisualStudio.Component.VC.Tools.ARM",
+    "Microsoft.VisualStudio.ComponentGroup.UWP.VC",
+    "Microsoft.Component.NetFX.Native",
+    "Microsoft.VisualStudio.ComponentGroup.UWP.NetCoreAndStandard",
+    "Microsoft.VisualStudio.Component.Graphics",
+    "Microsoft.VisualStudio.ComponentGroup.UWP.Xamarin",
+    "Microsoft.VisualStudio.ComponentGroup.UWP.Support",
+    "Microsoft.VisualStudio.Workload.Universal",
     "Microsoft.VisualStudio.Workload.Data",
     "Component.MDD.Linux",
     "Component.Linux.CMake",
     "Microsoft.VisualStudio.Workload.NativeCrossPlat",
-    "Microsoft.NetCore.Component.Runtime.7.0"
-  ]
+    "Microsoft.NetCore.Component.Runtime.7.0",
+    "Microsoft.VisualStudio.Component.VisualStudioData"
+  ],
+  "extensions": []
 }
