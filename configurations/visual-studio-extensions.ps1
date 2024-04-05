@@ -31,6 +31,8 @@ $visualStudioExtensions = @(
   @{ DisplayName = 'FileDiffer'; ItemName = 'MadsKristensen.FileDiffer'; },
   @{ DisplayName = 'File Icons'; ItemName = 'MadsKristensen.FileIcons'; },
   @{ DisplayName = 'Fix Mixed Tabs 2022'; ItemName = 'VisualStudioPlatformTeam.FixMixedTabs2022'; },
+  @{ DisplayName = 'GitHub Copilot'; ItemName = 'GitHub.copilotvs'; },
+  @{ DisplayName = 'GitHub Copilot Chat'; ItemName = 'VisualStudioExptTeam.VSGitHubCopilot'; },
   @{ DisplayName = 'HTML Snippet Pack'; ItemName = 'MadsKristensen.HTMLSnippetPack'; },
   @{ DisplayName = 'Image Optimizer'; ItemName = 'MadsKristensen.ImageOptimizer64bit'; },
   @{ DisplayName = 'Image Sprites'; ItemName = 'MadsKristensen.ImageSprites64'; },
