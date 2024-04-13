@@ -9,6 +9,7 @@
     { "name": "esbenp.prettier-vscode", "description": "Code formatter using prettier" },
     { "name": "formulahendry.github-actions", "description": "Language support for workflow file of GitHub Actions" },
     { "name": "GitHub.copilot", "description": "Your AI pair programmer" },
+    { "name": "GitHub.copilot-chat", "description": "AI chat features powered by Copilot" },
     { "name": "github.vscode-github-actions", "description": "GitHub Actions workflows and runs for github.com hosted repositories in VS Code" },
     { "name": "johnpapa.vscode-cloak", "description": "Cloak hides/shows your secrets in environment files, to avoid accidentally sharing them with everyone who sees your screen" },
     { "name": "mikestead.dotenv", "description": "Support for dotenv file syntax" },
