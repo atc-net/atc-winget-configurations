@@ -61,6 +61,7 @@ $visualStudioExtensions = @(
   @{ DisplayName = 'Shrink Empty Lines 2022'; ItemName = 'VisualStudioPlatformTeam.SyntacticLineCompression2022'; },
   @{ DisplayName = 'Solution Error Visualizer 2022'; ItemName = 'VisualStudioPlatformTeam.SolutionErrorVisualizer2022'; },
   @{ DisplayName = 'Time Stamp Margin 2022'; ItemName = 'VisualStudioPlatformTeam.TimeStampMargin2022'; },
+  @{ DisplayName = 'TypeSpec for Visual Studio'; ItemName = 'typespec.typespecvs'; },
   @{ DisplayName = 'VSColorOutput64'; ItemName = 'MikeWard-AnnArbor.VSColorOutput64'; },
   @{ DisplayName = 'Web Compiler 2022+'; ItemName = 'Failwyn.WebCompiler64'; },
   @{ DisplayName = 'Webpack Task Runner'; ItemName = 'MadsKristensen.WebPackTaskRunner'; },
