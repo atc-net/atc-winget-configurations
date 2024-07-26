@@ -35,6 +35,7 @@ $visualStudioExtensions = @(
   @{ DisplayName = 'GitHub Copilot Chat'; ItemName = 'VisualStudioExptTeam.VSGitHubCopilot'; },
   @{ DisplayName = 'HTML Snippet Pack'; ItemName = 'MadsKristensen.HTMLSnippetPack'; },
   @{ DisplayName = 'Image Optimizer'; ItemName = 'MadsKristensen.ImageOptimizer64bit'; },
+  @{ DisplayName = 'Image Preview'; ItemName = 'MadsKristensen.ImagePreview'; },
   @{ DisplayName = 'Image Sprites'; ItemName = 'MadsKristensen.ImageSprites64'; },
   @{ DisplayName = 'JavaScript Snippet Pack'; ItemName = 'MadsKristensen.JavaScriptSnippetPack'; },
   @{ DisplayName = 'Live Share 2022'; ItemName = 'MS-vsliveshare.vsls-vs-2022'; },
