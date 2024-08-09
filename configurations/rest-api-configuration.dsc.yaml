@@ -16,6 +16,14 @@ properties:
         id: k6.k6
         source: winget
     - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: Bruno
+      directives:
+        description: Install Bruno
+        allowPrerelease: true
+      settings:
+        id: Bruno.Bruno
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
       id: Postman
       directives:
         description: Install Postman
