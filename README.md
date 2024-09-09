@@ -33,6 +33,14 @@ Execute individual profile either directly through winget or by using the accomp
 
 For guidance on applying each script, refer to the instructions provided at the beginning of every profile.
 
+> Note: If you encounter the following error when running the accompanying helper script [`setup.ps1`](setup.ps1)
+>
+>> `setup.ps1 cannot be loaded because running scripts is disabled on this system`
+>
+> Run the following command:
+>
+>> Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
+
 ### Use Case Scenarios
 
 In the [`/configurations`](configurations/) directory, you will find various profiles designed for different environments. Each profile is a curated collection of configurations to streamline your setup process.
