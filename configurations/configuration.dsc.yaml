@@ -42,7 +42,7 @@ properties:
     - resource: Microsoft.WinGet.DSC/WinGetPackage
       id: GitHubClI
       directives:
-        description: Install GitHub ClI
+        description: Install GitHub Cli
         allowPrerelease: true
       settings:
         id: GitHub.cli
