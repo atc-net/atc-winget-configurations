@@ -24,6 +24,10 @@ properties:
         GetScript: |
           # Not using this at the moment.
         TestScript: |
+          # Ignore deprecation warnings & reload path
+          $env:NODE_OPTIONS="--no-deprecation"
+          $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
           # Load required extensions from JSON file
           $jsonContent = Get-Content '${WinGetConfigRoot}\game-configuration-vscode-extensions.json' -Raw
           $extensions = (ConvertFrom-Json $jsonContent).extensions
