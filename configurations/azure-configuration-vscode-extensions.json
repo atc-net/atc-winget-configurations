@@ -15,6 +15,7 @@
         { "name": "ms-azuretools.vscode-azurestaticwebapps", "description": "An Azure Static Web Apps extension for Visual Studio Code" },
         { "name": "ms-azuretools.vscode-azurestorage", "description": "Manage your Azure Storage accounts including Blob Containers, File Shares, Tables and Queues" },
         { "name": "ms-azuretools.vscode-azurevirtualmachines", "description": "An Azure Virtual Machines extension for Visual Studio Code" },
+        { "name": "ms-azuretools.vscode-azure-github-copilot", "description": "GitHub Copilot for Azure is the @azure extension. It's designed to help streamline the process of developing for Azure. You can ask @azure questions about Azure services or get help with tasks related to Azure and developing for Azure, all from within Visual Studio Code." },
         { "name": "ms-azuretools.vscode-bicep", "description": "Bicep language support for Visual Studio Code" },
         { "name": "ms-azuretools.vscode-cosmosdb", "description": "Create, browse, and update globally distributed, multi-model databases in Azure" },
         { "name": "ms-azuretools.ms-entra", "description": "Add authentication to applications for customer identity and access management (CIAM) scenarios" },
