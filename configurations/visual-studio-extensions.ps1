@@ -30,6 +30,7 @@ $visualStudioExtensions = @(
   @{ DisplayName = 'EF Core Power Tools'; ItemName = 'ErikEJ.EFCorePowerTools'; },
   @{ DisplayName = 'FileDiffer'; ItemName = 'MadsKristensen.FileDiffer'; },
   @{ DisplayName = 'File Icons'; ItemName = 'MadsKristensen.FileIcons'; },
+  @{ DisplayName = 'File Explorer'; ItemName = 'MadsKristensen.WorkflowBrowser'; },
   @{ DisplayName = 'Fix Mixed Tabs 2022'; ItemName = 'VisualStudioPlatformTeam.FixMixedTabs2022'; },
   @{ DisplayName = 'GitHub Copilot'; ItemName = 'GitHub.copilotvs'; },
   @{ DisplayName = 'GitHub Copilot Chat'; ItemName = 'VisualStudioExptTeam.VSGitHubCopilot'; },
