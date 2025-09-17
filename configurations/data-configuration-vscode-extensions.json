@@ -10,6 +10,7 @@
     { "name": "ms-toolsai.jupyter-renderers", "description": "Adds additional output renderers for Jupyter notebooks in VS Code, enhancing the visualization of notebook outputs." },
     { "name": "ms-toolsai.vscode-jupyter-cell-tags", "description": "Allows users to add, edit, and manage tags on Jupyter notebook cells directly within VS Code, improving notebook organization and navigation." },
     { "name": "ms-toolsai.vscode-jupyter-slideshow", "description": "Enables the creation of slide shows from Jupyter notebooks within VS Code, facilitating presentations and educational content creation." },
-    { "name": "paiqo.databricks-vscode", "description": "Provides seamless integration with Databricks, allowing you to develop and deploy Databricks notebooks, jobs, and workflows directly from VS Code." }
+    { "name": "paiqo.databricks-vscode", "description": "Provides seamless integration with Databricks, allowing you to develop and deploy Databricks notebooks, jobs, and workflows directly from VS Code." },
+    { "name": "ms-azuretools.vscode-cosmosdb", "description": "Connect Azure CosmosDB databases in Azure, inspect and edit your data and run powerful queries with the visual query editor.." }
   ]
 }
