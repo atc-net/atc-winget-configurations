@@ -1,0 +1,6 @@
+{
+  "extensions":
+  [
+    { "name": "platformio.platformio-ide", "description": "A comprehensive IDE for IoT development that supports cross-platform build system, library management, and full integration with professional development environments. Enables development with multiple platforms, frameworks, and boards." }
+  ]
+}

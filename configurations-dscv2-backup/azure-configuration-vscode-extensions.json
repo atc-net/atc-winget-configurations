@@ -1,0 +1,34 @@
+{
+    "extensions":
+    [
+        { "name": "AzureADB2CTools.aadb2c", "description": "Azure AD B2C custom policy extension" },
+        { "name": "Azurite.azurite", "description": "An open source Azure Storage API compatible server" },
+        { "name": "bencoleman.armview", "description": "Graphically display ARM templates in an interactive map view" },
+        { "name": "ms-azure-devops.azure-pipelines", "description": "Syntax highlighting, IntelliSense, and more for Azure Pipelines YAML" },
+        { "name": "ms-azuretools.azure-dev", "description": "Makes it easy to run, provision, and deploy Azure applications using the Azure Developer CLI" },
+        { "name": "ms-azuretools.rad-vscode-bicep", "description": "Radius custom Bicep language support for Visual Studio Code" },
+        { "name": "ms-azuretools.vscode-apimanagement", "description": "An Azure API Management extension for Visual Studio Code" },
+        { "name": "ms-azuretools.vscode-azureappservice", "description": "An Azure App Service management extension for Visual Studio Code" },
+        { "name": "ms-azuretools.vscode-azurecontainerapps", "description": "An Azure Container Apps extension for Visual Studio Code" },
+        { "name": "ms-azuretools.vscode-azurefunctions", "description": "An Azure Functions extension for Visual Studio Code" },
+        { "name": "ms-azuretools.vscode-azureresourcegroups", "description": "An extension for viewing and managing Azure resources" },
+        { "name": "ms-azuretools.vscode-azurestaticwebapps", "description": "An Azure Static Web Apps extension for Visual Studio Code" },
+        { "name": "ms-azuretools.vscode-azurestorage", "description": "Manage your Azure Storage accounts including Blob Containers, File Shares, Tables and Queues" },
+        { "name": "ms-azuretools.vscode-azurevirtualmachines", "description": "An Azure Virtual Machines extension for Visual Studio Code" },
+        { "name": "ms-azuretools.vscode-azure-github-copilot", "description": "GitHub Copilot for Azure is the @azure extension. It's designed to help streamline the process of developing for Azure. You can ask @azure questions about Azure services or get help with tasks related to Azure and developing for Azure, all from within Visual Studio Code." },
+        { "name": "ms-azuretools.vscode-bicep", "description": "Bicep language support for Visual Studio Code" },
+        { "name": "ms-azuretools.vscode-cosmosdb", "description": "Create, browse, and update globally distributed, multi-model databases in Azure" },
+        { "name": "ms-azuretools.ms-entra", "description": "Add authentication to applications for customer identity and access management (CIAM) scenarios" },
+        { "name": "ms-mssql.sql-bindings-vscode", "description": "Enables users to develop and publish Azure Functions with Azure SQL bindings" },
+        { "name": "ms-vscode.azure-account", "description": "A common Sign In and Subscription management extension for VS Code" },
+        { "name": "ms-vscode.azurecli", "description": "Tools for developing and running commands of the Azure CLI" },
+        { "name": "ms-vscode.vscode-node-azure-pack", "description": "Get web site hosting, SQL and MongoDB data, Docker Containers, Serverless Functions" },
+        { "name": "msazurermtools.azurerm-vscode-tools", "description": "Language server, editing tools and snippets for Azure Resource Manager (ARM) template files" },
+        { "name": "SavranWeb.cosmosdbsqlapi", "description": "Query Azure Cosmos DB SQL API. Includes Execution Metrics and Indexig Policies" },
+        { "name": "Summer.azure-event-hub-explorer", "description": "Manage Azure Event Hub and Messages with Visual Studio Code" },
+        { "name": "VisualStudioOnlineApplicationInsights.application-insights", "description": "" },
+        { "name": "vsciot-vscode.azure-iot-edge", "description": "Azure IoT Edge extension makes it easy to code, build, deploy, and debug your IoT Edge solutions in Visual Studio Code" },
+        { "name": "vsciot-vscode.azure-iot-toolkit", "description": "Interact with Azure IoT Hub, IoT Device Management, IoT Edge Management, IoT Hub Device Simulation, IoT Hub Code Generation and IoT Hub Device Provisioning Service" },
+        { "name": "vsciot-vscode.vscode-dtdl", "description": "This extension provides syntax highlighting to read and edit JSON documents using the Digital Twins Definition Language" }
+    ]
+}

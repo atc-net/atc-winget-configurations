@@ -1,0 +1,15 @@
+{
+  "extensions":
+  [
+    { "name": "dvirtz.parquet-viewer", "description": "Allows users to view Apache Parquet files directly within Visual Studio Code, providing an easy way to inspect large data files without leaving the editor." },
+    { "name": "ms-mssql.data-workspace-vscode", "description": "Provides a unified data project management experience in VS Code, enabling users to organize and manage database projects and data connections." },
+    { "name": "ms-mssql.mssql", "description": "Enables database development directly from VS Code, allowing you to connect to SQL Server, Azure SQL Database, and SQL Data Warehouse, and run queries." },
+    { "name": "ms-mssql.sql-database-projects-vscode", "description": "Supports SQL database project management and development, facilitating source control integration and an organized approach to database development." },
+    { "name": "ms-toolsai.jupyter", "description": "Integrates Jupyter Notebook support into VS Code, allowing you to create, edit, and run Jupyter notebooks within the editor." },
+    { "name": "ms-toolsai.jupyter-keymap", "description": "Provides Jupyter Notebook keymap extensions for VS Code, enabling familiar keyboard shortcuts for those accustomed to Jupyter's interface." },
+    { "name": "ms-toolsai.jupyter-renderers", "description": "Adds additional output renderers for Jupyter notebooks in VS Code, enhancing the visualization of notebook outputs." },
+    { "name": "ms-toolsai.vscode-jupyter-cell-tags", "description": "Allows users to add, edit, and manage tags on Jupyter notebook cells directly within VS Code, improving notebook organization and navigation." },
+    { "name": "ms-toolsai.vscode-jupyter-slideshow", "description": "Enables the creation of slide shows from Jupyter notebooks within VS Code, facilitating presentations and educational content creation." },
+    { "name": "paiqo.databricks-vscode", "description": "Provides seamless integration with Databricks, allowing you to develop and deploy Databricks notebooks, jobs, and workflows directly from VS Code." }
+  ]
+}
