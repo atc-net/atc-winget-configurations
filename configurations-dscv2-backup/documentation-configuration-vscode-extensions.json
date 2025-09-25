@@ -1,0 +1,12 @@
+{
+  "extensions":
+  [
+    { "name": "aaron-bond.better-comments", "description": "Improves code commenting by categorizing them into alerts, queries, TODOs, and more, making them more readable and noticeable." },
+    { "name": "bierner.markdown-mermaid", "description": "Enables the integration of Mermaid diagrams in Markdown files within VS Code, allowing for the creation of diagrams using text and code." },
+    { "name": "bpruitt-goddard.mermaid-markdown-syntax-highlighting", "description": "Provides syntax highlighting for Mermaid code blocks within Markdown files, enhancing readability and editing of diagrams." },
+    { "name": "DavidAnson.vscode-markdownlint", "description": "A linter for Markdown files, helping ensure consistency and adherence to Markdown best practices and style guidelines." },
+    { "name": "hediet.vscode-drawio", "description": "Integrates draw.io into VS Code, offering a powerful diagramming and drawing tool within the editor for creating complex diagrams." },
+    { "name": "mdickin.markdown-shortcuts", "description": "Adds handy keyboard shortcuts for editing Markdown files more efficiently, improving productivity for Markdown documentation." },
+    { "name": "yzhang.markdown-all-in-one", "description": "Provides a comprehensive set of features for Markdown editing, including keyboard shortcuts, table of contents, auto preview, and more." }
+  ]
+}

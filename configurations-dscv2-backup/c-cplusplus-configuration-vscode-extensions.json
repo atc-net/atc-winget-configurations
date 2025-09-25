@@ -1,0 +1,10 @@
+{
+  "extensions":
+  [
+    { "name": "ms-vscode.cmake-tools", "description": "Extended CMake support in Visual Studio Code" },
+    { "name": "ms-vscode.cpptools", "description": "C/C++ IntelliSense, debugging, and code browsing" },
+    { "name": "ms-vscode.cpptools-extension-pack", "description": "Popular extensions for C++ development in Visual Studio Code" },
+    { "name": "ms-vscode.cpptools-themes", "description": "UI Themes for C/C++ extension" },
+    { "name": "twxs.cmake", "description": "CMake langage support for Visual Studio Code" }
+  ]
+}

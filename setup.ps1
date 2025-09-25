@@ -18,6 +18,31 @@ function IsPowershellRunningWithAdminRights
     return $true;
 }
 
+function IsDSCv3Available {
+    # Check if DSC v3 CLI is available
+    try {
+        $dscVersion = dsc --version 2>$null
+        if ($dscVersion) {
+            Write-Host "DSC v3 CLI found: $dscVersion" -ForegroundColor Green
+            return $true
+        }
+    } catch {
+        # DSC v3 not available
+    }
+    
+    Write-Warning "DSC v3 CLI not found. Using WinGet for DSC v2 configurations."
+    return $false
+}
+
+function IsConfigurationDSCv3 {
+    param (
+        [string]$configPath
+    )
+    
+    $content = Get-Content $configPath -Raw
+    return $content -match '\$schema.*dsc/schemas/v3'
+}
+
 function IsWingetVersionCorrect {
     param (
         [string]$requiredVersion = "1.7.10661"
@@ -49,14 +74,37 @@ function Invoke-ProfileProcess {
     Clear-Host
 
     $operationVerb = if ($mode -eq "Apply") { "Applying" } else { "Testing" }
-    $wingetCommand = if ($mode -eq "Apply") { "configure" } else { "configure test" }
-
+    
     Write-Host "$operationVerb profile: " -NoNewline -ForegroundColor Yellow
     Write-Host $($profilePath)
 
-    $output = Invoke-Expression "winget $wingetCommand -f `"$profilePath`" --accept-configuration-agreements" 2>&1
-
-    Write-ConfigurationOutput -consoleOutput $output -mode $mode
+    # Determine if this is a DSC v3 configuration
+    $isDSCv3 = IsConfigurationDSCv3 -configPath $profilePath
+    $isDSCv3Available = IsDSCv3Available
+    
+    if ($isDSCv3 -and $isDSCv3Available) {
+        # Use DSC v3 CLI
+        Write-Host "Using DSC v3 CLI..." -ForegroundColor Cyan
+        
+        if ($mode -eq "Apply") {
+            $output = dsc config set -f $profilePath 2>&1
+        } else {
+            $output = dsc config test -f $profilePath 2>&1
+        }
+        
+        Write-DSCv3Output -consoleOutput $output -mode $mode
+    } elseif ($isDSCv3 -and -not $isDSCv3Available) {
+        Write-Warning "This is a DSC v3 configuration but DSC v3 CLI is not available."
+        Write-Warning "Please install DSC v3 CLI or use a DSC v2 configuration."
+        return
+    } else {
+        # Use WinGet for DSC v2 configurations
+        Write-Host "Using WinGet CLI for DSC v2 configuration..." -ForegroundColor Cyan
+        $wingetCommand = if ($mode -eq "Apply") { "configure" } else { "configure test" }
+        $output = Invoke-Expression "winget $wingetCommand -f `"$profilePath`" --accept-configuration-agreements" 2>&1
+        Write-ConfigurationOutput -consoleOutput $output -mode $mode
+    }
+    
     Read-Host "Press Enter to continue..."
 }
 
@@ -202,11 +250,78 @@ function Write-ConfigurationOutput {
     Write-Host "----------------------------------------------------------------------"
 }
 
+function Write-DSCv3Output {
+    param (
+        [Parameter(Mandatory = $true)]
+        [object]
+        $consoleOutput,
+
+        [Parameter(Mandatory = $true)]
+        [ValidateSet("Test", "Apply")]
+        [string]
+        $mode
+    )
+
+    $consoleOutputString = if ($consoleOutput -is [String]) { $consoleOutput } else { $consoleOutput | Out-String }
+    
+    Write-Host "----------------------------------------------------------------------"
+    Write-Host "DSC v3 Configuration Output:" -ForegroundColor Yellow
+    Write-Host "----------------------------------------------------------------------"
+    
+    # For DSC v3, output is typically JSON formatted
+    try {
+        # Try to parse as JSON for structured output
+        $jsonOutput = $consoleOutputString | ConvertFrom-Json -ErrorAction Stop
+        
+        # Display structured results
+        if ($jsonOutput.results) {
+            foreach ($result in $jsonOutput.results) {
+                $resourceName = $result.name ?? "Unknown"
+                $resourceType = $result.type ?? "Unknown"
+                
+                if ($result.result) {
+                    $beforeState = $result.result.beforeState ?? @{}
+                    $afterState = $result.result.afterState ?? @{}
+                    $changed = $result.result.changedProperties ?? @()
+                    
+                    $status = if ($changed.Count -gt 0) { "Changed" } else { "No Change Required" }
+                    $color = if ($changed.Count -gt 0) { "Yellow" } else { "Green" }
+                    
+                    Write-Host "$resourceType" -NoNewline -ForegroundColor Yellow
+                    Write-Host " [$resourceName]" -NoNewline -ForegroundColor Blue
+                    Write-Host " $status" -ForegroundColor $color
+                    
+                    if ($changed.Count -gt 0) {
+                        foreach ($change in $changed) {
+                            Write-Host "  └─ Changed: $change" -ForegroundColor Gray
+                        }
+                    }
+                } else {
+                    Write-Host "$resourceType" -NoNewline -ForegroundColor Yellow
+                    Write-Host " [$resourceName]" -NoNewline -ForegroundColor Blue
+                    Write-Host " Processed" -ForegroundColor Green
+                }
+            }
+        } else {
+            # Fallback for non-structured output
+            Write-Host $consoleOutputString -ForegroundColor White
+        }
+    } catch {
+        # If not JSON, display as plain text
+        Write-Host $consoleOutputString -ForegroundColor White
+    }
+    
+    Write-Host "----------------------------------------------------------------------"
+}
+
 $isPowershellRunningWithAdminRights = IsPowershellRunningWithAdminRights
 if(!$isPowershellRunningWithAdminRights)
 {
     break
 }
+
+# Check DSC v3 availability (informational)
+$isDSCv3Available = IsDSCv3Available
 
 $isWingetVersionCorrect = IsWingetVersionCorrect
 if(!$isWingetVersionCorrect)

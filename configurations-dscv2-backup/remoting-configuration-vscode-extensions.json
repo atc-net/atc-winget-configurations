@@ -1,0 +1,10 @@
+{
+  "extensions":
+  [
+    { "name": "ms-vscode.remote-explorer", "description": "Provides a UI to easily manage and switch between remote sessions, containers, and WSL instances directly from Visual Studio Code." },
+    { "name": "ms-vscode-remote.remote-ssh", "description": "Allows you to use any remote machine with an SSH server as your development environment, enabling you to open folders and edit files on remote machines directly from VS Code." },
+    { "name": "ms-vscode-remote.remote-ssh-edit", "description": "Enhances the Remote - SSH extension by enabling editing and managing configurations of SSH hosts, simplifying the setup process for SSH-based development environments." },
+    { "name": "ms-vscode-remote.remote-server", "description": "Acts as a support extension for other Remote Development extensions, enabling VS Code to connect to and work with remote servers." },
+    { "name": "ms-vscode-remote.vscode-remote-extensionpack", "description": "A comprehensive pack of extensions for remote development, bundling Remote - SSH, Remote - Containers, and Remote - WSL to support development in containers, on remote machines, or with the Windows Subsystem for Linux." }
+  ]
+}
